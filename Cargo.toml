@@ -1,0 +1,13 @@
+[package]
+name = "zellij-pick-vim-target"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+zellij-tile = "0.44.3"
+
+[profile.release]
+# Keep the wasm small; this is a tiny UI plugin.
+opt-level = "z"
+lto = true
+strip = true

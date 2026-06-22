@@ -1,0 +1,15 @@
+// Dev layout: `zellij --layout plugin.kdl` to iterate on the plugin.
+layout {
+    pane size=2 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+    pane
+    pane size=1 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+    floating_panes {
+        pane {
+            plugin location="file:target/wasm32-wasip1/release/zellij-pick-vim-target.wasm"
+        }
+    }
+}
