@@ -67,16 +67,19 @@ cargo test --target aarch64-apple-darwin
 
 ## Use
 
-Bind a key to launch it floating (e.g. in `~/.config/zellij/config.kdl`):
+Bind a key to launch it floating (e.g. in `~/.config/zellij/config.kdl`). Load
+it straight from the latest GitHub release:
 
 ```kdl
 bind "Alt y" {
-    LaunchOrFocusPlugin "file:/ABSOLUTE/PATH/zellij-pick-vim-target/target/wasm32-wasip1/release/zellij-pick-vim-target.wasm" {
+    LaunchOrFocusPlugin "https://github.com/zackradisic/zellij-pick-vim-target/releases/latest/download/zellij-pick-vim-target.wasm" {
         floating true
         move_to_focused_tab true
     }
 }
 ```
+
+Or point it at a local build with `file:/ABSOLUTE/PATH/target/wasm32-wasip1/release/zellij-pick-vim-target.wasm`.
 
 On first launch Zellij prompts for these permissions:
 
