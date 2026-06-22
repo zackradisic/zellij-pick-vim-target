@@ -2,11 +2,9 @@ use std::collections::{BTreeMap, HashSet};
 use std::path::PathBuf;
 use zellij_tile::prelude::*;
 
-/// A floating fuzzy-picker for file paths in the scrollback of the pane you
-/// launched it from. Pick one and it lands on your clipboard as a Vim target:
-///   src/util/lib.ts:450:12  ->  +call cursor(450,12) src/util/lib.ts
-///   /etc/hosts:21           ->  +21 /etc/hosts
-/// Replaces the tmux `prefix+f` (find) / `Y` (copy-as-vim-target) combo.
+// A floating fuzzy-picker for file paths in the scrollback of the pane you
+// launched it from. Pick one to open it in your editor (at the line) or copy
+// it as a Vim target. Replaces the tmux `prefix+f` / `Y` combo.
 
 /// One pickable target: the `path[:line[:col]]` token plus the scrollback line
 /// it came from, so the list can show the surrounding context (e.g. the code on
@@ -165,7 +163,7 @@ impl ZellijPlugin for State {
             Text::new(msg).color_range(1, ..)
         } else if let Some(&ti) = matches.get(self.selected) {
             let target = vim_target(&self.targets[ti].token);
-            Text::new(&format!("⏎ open   ^y copy: {}", target))
+            Text::new(format!("⏎ open   ^y copy: {}", target))
                 .color_range(3, 0..1)
                 .color_range(3, 9..11)
         } else {
